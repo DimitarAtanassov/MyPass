@@ -14,11 +14,11 @@ int main (int argc, char* argv[])
     while(!validChoice)
     {   
         std::cout << "What would you like to do?" << std::endl;
-        std::cout << "1.) Get Password" << std::endl;
-        std::cout <<"2.) Add Password" << std::endl;
-        std::cout <<"3.) Update Password" << std::endl;
-        std::cout <<"4.) Delete Password" << std::endl;
-        std::cout <<"Enter the corresponding number: ";
+        std::cout << " 1.) Get Password " << std::endl;
+        std::cout <<" 2.) Add Password " << std::endl;
+        std::cout <<" 3.) Update Password " << std::endl;
+        std::cout <<" 4.) Delete Password " << std::endl;
+        std::cout <<" Enter the corresponding number: ";
         std::cin >> userChoice;
 
         // Invalid User Input
@@ -54,6 +54,11 @@ int main (int argc, char* argv[])
                     break;
             }
         }
+    }
+
+    if (appCommand == "Add")
+    {
+        
     }
 
     return 0;
