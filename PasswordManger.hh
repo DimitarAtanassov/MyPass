@@ -10,6 +10,7 @@ class PasswordManager
     public:
             Account* addPassword();
             PasswordManager();
+            void writeToFile(const std::string&, const std::string&, const std::string&, const std::string&);
     private:
         
 

@@ -2,6 +2,7 @@
 #include "Account.hh"
 #include <iostream>
 #include <string>
+#include <fstream>
 PasswordManager::PasswordManager()
 {
 
@@ -30,4 +31,17 @@ Account* PasswordManager::addPassword()
 
     return newAccount;
 
+}
+
+void PasswordManager::writeToFile(const std::string& src, const std::string& username, const std::string& password, const std::string& email)
+{
+    std::ofstream myFile;
+    myFile.open("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+    myFile << "" << std::endl;
+    myFile << src << std::endl;
+    myFile << username << std::endl;
+    myFile << password << std::endl;
+    myFile << email << std::endl;
+    myFile << "" << std::endl;
+    myFile.close();
 }

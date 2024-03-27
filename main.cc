@@ -3,6 +3,7 @@
 #include <limits>
 #include "PasswordManger.hh"
 #include "Account.hh"
+
 int main (int argc, char* argv[])
 {
     bool validChoice = false;
@@ -60,7 +61,7 @@ int main (int argc, char* argv[])
     if(appCommand == "Add")
     {
         Account* newAccount = manager.addPassword();
-        newAccount->printAccount(); 
+        manager.writeToFile(newAccount->getSource(), newAccount->getUsername(), newAccount->getPassword(), newAccount->getEmail());
     }
 
     
