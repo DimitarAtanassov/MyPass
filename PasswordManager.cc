@@ -1,12 +1,13 @@
 #include "PasswordManger.hh"
-
-std::string PasswordManager::getPassword(const std::string& source)
+#include "Account.hh"
+#include <iostream>
+#include <string>
+PasswordManager::PasswordManager()
 {
 
-}
+};
 
-
-Account PasswordManager::addPassword()
+Account* PasswordManager::addPassword()
 {
     std::string newSource; 
     std::string newUsername;
@@ -24,9 +25,9 @@ Account PasswordManager::addPassword()
 
     std::cout << "What is the email assocaited with this Account?" << std::endl;
     std::cin >> newEmail;
+    
+    Account* newAccount = new Account(newSource,newUsername,newPassword,newEmail);
 
-    Account newAccount = new Account(newSource,newUsername,newPassword,newEmail);
-
-    return Account;
+    return newAccount;
 
 }

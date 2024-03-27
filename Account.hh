@@ -18,6 +18,8 @@ class Account
         void setUsername(const std::string& );
         void setPassword(const std::string& );
         void setEmail(const std::string& );
+
+        void printAccount();
     
     private:
         
@@ -26,7 +28,7 @@ class Account
         std::string password;
         std::string email;
 
-}
+};
 
 
 #endif

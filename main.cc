@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include <limits>
-
+#include "PasswordManger.hh"
+#include "Account.hh"
 int main (int argc, char* argv[])
 {
     bool validChoice = false;
@@ -55,12 +56,14 @@ int main (int argc, char* argv[])
             }
         }
     }
-
-    if (appCommand == "Add")
+    PasswordManager manager;
+    if(appCommand == "Add")
     {
-        
+        Account* newAccount = manager.addPassword();
+        newAccount->printAccount(); 
     }
 
+    
     return 0;
 
 }

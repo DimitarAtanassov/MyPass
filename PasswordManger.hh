@@ -8,12 +8,12 @@
 class PasswordManager
 {
     public:
-            Account getPassword(const std::string&);
+            Account* addPassword();
             PasswordManager();
     private:
         
 
-}
+};
 
 
 #endif
