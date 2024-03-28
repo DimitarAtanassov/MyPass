@@ -157,7 +157,52 @@ void PasswordManager::deletePassword(const std::string& srcToDelete)
     }
 }
 
-void PasswordManager::updatePassword(const std::string& passwordSrc)
+void PasswordManager::updatePassword(const std::string& passwordSrc, const std::string& newPassword)
 {
-    
+
+    std::ifstream inputFile("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+    std::ofstream outputFile("C:/Users/dimit/OneDrive/Desktop/temp.txt");
+
+    std::string line;
+    std::string currentSrc;
+
+    bool found = false;
+    bool inAccountSection = false;
+    while (getline(inputFile, line))
+    {
+        if (inAccountSection)
+        {
+            if(line.empty())
+            {
+                inAccountSection = false;
+                outputFile << line << std::endl;     
+            }
+            else
+            {
+                outputFile << line << std::endl;
+                getline(inputFile,line);
+                outputFile << newPassword << std::endl;
+                getline(inputFile,line);
+                outputFile << line << std::endl;
+            }
+
+
+            
+           
+        }
+        else if (line == passwordSrc)
+        {
+            inAccountSection = true;
+            outputFile << line << std::endl;
+            currentSrc = line;
+        }
+        else
+        {
+            outputFile << line << std::endl;
+        }
+    }
+    inputFile.close();
+    outputFile.close();
+    std::remove("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+    std::rename("C:/Users/dimit/OneDrive/Desktop/temp.txt", "C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
 }

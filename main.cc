@@ -90,6 +90,19 @@ int main (int argc, char* argv[])
         manager.deletePassword(passwordSrc);
     }
 
+    else if (appCommand == "Update")
+    {
+        std::string passwordSrc;
+        std::string newPassword;
+        std::cout << "-------------------------------------" << std::endl;
+        std::cout << "What Password would you like to update? ";
+        std::cin >> passwordSrc;
+        std::cout << "What is the new password" << std::endl;
+        std::cin >> newPassword;
+        std::cout << "-------------------------------------" << std::endl;
+        manager.updatePassword(passwordSrc,newPassword);
+    }
+
     
     return 0;
 
