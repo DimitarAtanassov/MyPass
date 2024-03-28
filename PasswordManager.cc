@@ -92,3 +92,117 @@ Account* PasswordManager::getPassword(const std::string& src)
     
     return foundAccount; // Return the found account, nullptr if not found
 }
+
+void PasswordManager::deletePassword(const std::string& srcToDelete)
+{
+    std::ifstream inputFile("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+    std::ofstream outputFile("C:/Users/dimit/OneDrive/Desktop/temp.txt");
+
+    std::string line;
+    std::string currentSrc;
+
+    bool found = false;
+    bool inAccountSection = false;
+
+    while (getline(inputFile, line))
+    {
+        if (inAccountSection)
+        {
+            if (line.empty()) // End of account section
+            {
+                inAccountSection = false; // Exiting the account section
+                if (currentSrc != srcToDelete)
+                {
+                    // Write back the account if it's not the one to delete
+                    outputFile << currentSrc << std::endl;
+                    outputFile << line << std::endl;
+                }
+                else
+                {
+                    found = true; // Marking the account as found
+                }
+            }
+            else if (currentSrc != srcToDelete)
+            {
+                // Write back all lines except the ones belonging to the account to delete
+                outputFile << line << std::endl;
+            }
+        }
+        else if (line == srcToDelete)
+        {
+            inAccountSection = true; // Entering the account section
+            currentSrc = line;
+        }
+        else
+        {
+            // Write back lines that are not part of any account section
+            outputFile << line << std::endl;
+        }
+    }
+
+    inputFile.close();
+    outputFile.close();
+
+    // Replace the original file with the temporary file
+    std::remove("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+    std::rename("C:/Users/dimit/OneDrive/Desktop/temp.txt", "C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+
+    if (found)
+    {
+        std::cout << "Password with source '" << srcToDelete << "' has been deleted." << std::endl;
+    }
+    else
+    {
+        std::cout << "Password with source '" << srcToDelete << "' not found." << std::endl;
+    }
+}
+
+void PasswordManager::updatePassword(const std::string& passwordSrc, const std::string& newPassword)
+{
+
+    std::ifstream inputFile("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+    std::ofstream outputFile("C:/Users/dimit/OneDrive/Desktop/temp.txt");
+
+    std::string line;
+    std::string currentSrc;
+
+    bool found = false;
+    bool inAccountSection = false;
+    while (getline(inputFile, line))
+    {
+        if (inAccountSection)
+        {
+            if(line.empty())
+            {
+                inAccountSection = false;
+                outputFile << line << std::endl;     
+            }
+            else
+            {
+                outputFile << line << std::endl;
+                getline(inputFile,line);
+                outputFile << newPassword << std::endl;
+                getline(inputFile,line);
+                outputFile << line << std::endl;
+            }
+
+
+            
+           
+        }
+        else if (line == passwordSrc)
+        {
+            inAccountSection = true;
+            outputFile << line << std::endl;
+            currentSrc = line;
+        }
+        else
+        {
+            outputFile << line << std::endl;
+        }
+    }
+    inputFile.close();
+    outputFile.close();
+    std::remove("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+    std::rename("C:/Users/dimit/OneDrive/Desktop/temp.txt", "C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+}
