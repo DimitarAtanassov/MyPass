@@ -11,6 +11,7 @@ class PasswordManager
             Account* addPassword();
             PasswordManager();
             void writeToFile(const std::string&, const std::string&, const std::string&, const std::string&);
+            Account* getPassword(const std::string&);
     private:
         
 

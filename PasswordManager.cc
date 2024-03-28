@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 PasswordManager::PasswordManager()
 {
 
@@ -36,7 +37,7 @@ Account* PasswordManager::addPassword()
 void PasswordManager::writeToFile(const std::string& src, const std::string& username, const std::string& password, const std::string& email)
 {
     std::ofstream myFile;
-    myFile.open("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+    myFile.open("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt", std::ios::app);
     myFile << "" << std::endl;
     myFile << src << std::endl;
     myFile << username << std::endl;
@@ -44,4 +45,50 @@ void PasswordManager::writeToFile(const std::string& src, const std::string& use
     myFile << email << std::endl;
     myFile << "" << std::endl;
     myFile.close();
+}
+
+Account* PasswordManager::getPassword(const std::string& src)
+{
+    std::ifstream myFile;
+    std::string line;
+    Account* foundAccount = nullptr; // Initialize foundAccount to nullptr
+    std::string accountSrc;
+    std::string accountUsername;
+    std::string accountPassword;
+    std::string accountEmail;
+    bool inAccountSection = false;
+    
+    myFile.open("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+    
+    if (myFile.is_open())
+    {
+        while (getline(myFile, line))
+        {
+            if (inAccountSection)
+            {
+                if (line.empty()) // End of account section
+                {
+                    foundAccount = new Account(accountSrc, accountUsername, accountPassword, accountEmail);
+                    break;
+                }
+                
+                // Store username, password, and email in corresponding variables
+                if (accountUsername.empty())
+                    accountUsername = line;
+                else if (accountPassword.empty())
+                    accountPassword = line;
+                else if (accountEmail.empty())
+                    accountEmail = line;
+            }
+            else if (line == src)
+            {
+                inAccountSection = true;
+                accountSrc = line;
+            }
+        }
+    }
+    
+    myFile.close();
+    
+    return foundAccount; // Return the found account, nullptr if not found
 }
