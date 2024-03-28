@@ -7,6 +7,7 @@
 
 int main (int argc, char* argv[])
 {
+    
     bool validChoice = false;
     int userChoice;
     std::string appCommand;
@@ -77,6 +78,16 @@ int main (int argc, char* argv[])
         std::cout << "Account username: " << newAccount->getUsername() << std::endl;
         std::cout << "Account password: " << newAccount->getPassword() << std::endl;
         std::cout << "Account email: " << newAccount->getEmail() << std::endl;
+    }
+
+    else if (appCommand == "Delete")
+    {
+        std::string passwordSrc;
+        std::cout << "-------------------------------------" << std::endl;
+        std::cout << "What Password would you like to delete? ";
+        std::cin >> passwordSrc;
+        std::cout << "-------------------------------------" << std::endl;
+        manager.deletePassword(passwordSrc);
     }
 
     
