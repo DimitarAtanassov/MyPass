@@ -37,7 +37,7 @@ Account* PasswordManager::addPassword()
 void PasswordManager::writeToFile(const std::string& src, const std::string& username, const std::string& password, const std::string& email)
 {
     std::ofstream myFile;
-    myFile.open("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt", std::ios::app);
+    myFile.open("/home/dimitar/Documents/C++ Mypass/passwords.txt", std::ios::app);
     myFile << "" << std::endl;
     myFile << src << std::endl;
     myFile << username << std::endl;
@@ -58,7 +58,7 @@ Account* PasswordManager::getPassword(const std::string& src)
     std::string accountEmail;
     bool inAccountSection = false;
     
-    myFile.open("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+    myFile.open("/home/dimitar/Documents/C++ Mypass/passwords.txt");
     
     if (myFile.is_open())
     {
@@ -95,8 +95,8 @@ Account* PasswordManager::getPassword(const std::string& src)
 
 void PasswordManager::deletePassword(const std::string& srcToDelete)
 {
-    std::ifstream inputFile("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
-    std::ofstream outputFile("C:/Users/dimit/OneDrive/Desktop/temp.txt");
+    std::ifstream inputFile("/home/dimitar/Documents/C++ Mypass/passwords.txt");
+    std::ofstream outputFile("/home/dimitar/Documents/C++ Mypass/temp.txt");
 
     std::string line;
     std::string currentSrc;
@@ -144,8 +144,8 @@ void PasswordManager::deletePassword(const std::string& srcToDelete)
     outputFile.close();
 
     // Replace the original file with the temporary file
-    std::remove("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
-    std::rename("C:/Users/dimit/OneDrive/Desktop/temp.txt", "C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+    std::remove("/home/dimitar/Documents/C++ Mypass/passwords.txt");
+    std::rename("/home/dimitar/Documents/C++ Mypass/temp.txt", "/home/dimitar/Documents/C++ Mypass/passwords.txt");
 
     if (found)
     {
@@ -160,8 +160,8 @@ void PasswordManager::deletePassword(const std::string& srcToDelete)
 void PasswordManager::updatePassword(const std::string& passwordSrc, const std::string& newPassword)
 {
 
-    std::ifstream inputFile("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
-    std::ofstream outputFile("C:/Users/dimit/OneDrive/Desktop/temp.txt");
+    std::ifstream inputFile("/home/dimitar/Documents/C++ Mypass/passwords.txt");
+    std::ofstream outputFile("/home/dimitar/Documents/C++ Mypass/temp.txt");
 
     std::string line;
     std::string currentSrc;
@@ -203,6 +203,6 @@ void PasswordManager::updatePassword(const std::string& passwordSrc, const std::
     }
     inputFile.close();
     outputFile.close();
-    std::remove("C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
-    std::rename("C:/Users/dimit/OneDrive/Desktop/temp.txt", "C:/Users/dimit/OneDrive/Desktop/mypasswords.txt");
+    std::remove("/home/dimitar/Documents/C++ Mypass/passwords.txt");
+    std::rename("/home/dimitar/Documents/C++ Mypass/temp.txt", "/home/dimitar/Documents/C++ Mypass/passwords.txt");
 }
