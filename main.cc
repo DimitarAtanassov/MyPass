@@ -88,14 +88,15 @@ int main (int argc, char* argv[])
     else if (appCommand == "Get")
     {
         std::string passwordSrc;
-        std::cout << "\033[;34m-------------------------------------\033[0m" << std::endl;
-        std::cout << "\033[;36mWhat Password would you like to get? \033[0m";
+        std::cout << "\n\033[1;34m-------------------------------------\033[0m" << std::endl;
+        std::cout << "\033[1;36mWhat Password would you like to get? \033[0m";
         std::cin >> passwordSrc;
-        std::cout << "\033[;34m-------------------------------------\033[0m" << std::endl;
+        std::cout << "\033[1;34m-------------------------------------\033[0m" << std::endl;
         Account* newAccount = manager.getPassword(passwordSrc);
-        std::cout << "Account username: " << newAccount->getUsername() << std::endl;
-        std::cout << "Account password: " << newAccount->getPassword() << std::endl;
-        std::cout << "Account email: " << newAccount->getEmail() << std::endl;
+        std::cout << "\n\033[1;36mAccount username: \033[0m" << newAccount->getUsername() << std::endl;
+        std::cout << "\033[1;36mAccount password: \033[0m" << newAccount->getPassword() << std::endl;
+        std::cout << "\033[1;36mAccount email: \033[0m" << newAccount->getEmail() << std::endl;
+        std::cout << "" << std::endl;
     }
 
     else if (appCommand == "Delete")
