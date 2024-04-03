@@ -83,6 +83,7 @@ int main (int argc, char* argv[])
     {
         Account* newAccount = manager.addPassword();
         manager.writeToFile(newAccount->getSource(), newAccount->getUsername(), newAccount->getPassword(), newAccount->getEmail());
+        std::cout << "\033[1;32mPassword saved!\033[0m" << std::endl;
     }
 
     else if (appCommand == "Get")

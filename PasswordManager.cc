@@ -16,18 +16,18 @@ Account* PasswordManager::addPassword()
     std::string newPassword;
     std::string newEmail;
     
-    std::cout << "Where is this password used?" << std::endl;
+    std::cout << "\033[;32mWhere is this password used?\033[0m" << std::endl;
     std:: cin >> newSource;
 
-    std::cout << "What is the username linked to this password? If there is none press just press enter." << std::endl;
+    std::cout << "\033[;32mWhat is the username linked to this password? If there is none press just press enter.\033[0m" << std::endl;
     std::cin >> newUsername;
 
-    std::cout << "What is the password?" << std::endl;
+    std::cout << "\033[;32mWhat is the password?\033[0m" << std::endl;
     std::cin >>newPassword;
 
-    std::cout << "What is the email assocaited with this Account?" << std::endl;
+    std::cout << "\033[;32mWhat is the email assocaited with this Account?\033[0m" << std::endl;
     std::cin >> newEmail;
-    
+    std::cout << "" << std::endl;
     Account* newAccount = new Account(newSource,newUsername,newPassword,newEmail);
 
     return newAccount;
