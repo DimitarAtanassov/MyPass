@@ -103,10 +103,10 @@ int main (int argc, char* argv[])
     else if (appCommand == "Delete")
     {
         std::string passwordSrc;
-        std::cout << "-------------------------------------" << std::endl;
-        std::cout << "What Password would you like to delete? ";
+        std::cout << "\n\033[1;31m-------------------------------------\033[0m" << std::endl;
+        std::cout << "\033[1;31mWhat Password would you like to delete? \033[0m";
         std::cin >> passwordSrc;
-        std::cout << "-------------------------------------" << std::endl;
+        std::cout << "\033[1;31m-------------------------------------\033[0m\n" << std::endl;
         manager.deletePassword(passwordSrc);
     }
 

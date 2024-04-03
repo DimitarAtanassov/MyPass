@@ -149,11 +149,11 @@ void PasswordManager::deletePassword(const std::string& srcToDelete)
 
     if (found)
     {
-        std::cout << "Password with source '" << srcToDelete << "' has been deleted." << std::endl;
+        std::cout << "\033[1;32mPassword with source '" << srcToDelete << "' has been deleted.\033[0m" << std::endl;
     }
     else
     {
-        std::cout << "Password with source '" << srcToDelete << "' not found." << std::endl;
+        std::cout << "\033[1;31mPassword with source '" << srcToDelete << "' not found.\033[0m" << std::endl;
     }
 }
 
