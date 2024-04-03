@@ -29,19 +29,19 @@ int main (int argc, char* argv[])
     bool validChoice = false;
     int userChoice;
     std::string appCommand;
-    std::cout << "============================" << std::endl;
-    std::cout << "   MyPass     " << std::endl;
-    std::cout << "============================\n" << std::endl;
+    std::cout << "\033[;34m============================\033[0m" << std::endl;
+    std::cout << "\033[;34m         MyPass\033[0m" << std::endl;
+    std::cout << "\033[;34m============================\033[0m\n" << std::endl;
 
     while(!validChoice)
     {   
-        std::cout << "What would you like to do?" << std::endl;
-        std::cout << " 1.) Get Password " << std::endl;
-        std::cout <<" 2.) Add Password " << std::endl;
-        std::cout <<" 3.) Update Password " << std::endl;
-        std::cout <<" 4.) Delete Password " << std::endl;
+        std::cout << "\033[1;34mWhat would you like to do?\033[0m" << std::endl;
+        std::cout << "\033[;36m 1.) Get Password \033[0m" << std::endl;
+        std::cout <<"\033[;32m 2.) Add Password \033[0m" << std::endl;
+        std::cout <<"\033[;33m 3.) Update Password \033[0m" << std::endl;
+        std::cout <<"\033[;31m 4.) Delete Password \033[0m" << std::endl;
         std::cout << "" << std::endl;
-        std::cout <<" Enter the corresponding number: ";
+        std::cout <<"Enter the corresponding number: ";
         std::cin >> userChoice;
 
         // Invalid User Input
@@ -83,28 +83,30 @@ int main (int argc, char* argv[])
     {
         Account* newAccount = manager.addPassword();
         manager.writeToFile(newAccount->getSource(), newAccount->getUsername(), newAccount->getPassword(), newAccount->getEmail());
+        std::cout << "\033[1;32mPassword saved!\033[0m" << std::endl;
     }
 
     else if (appCommand == "Get")
     {
         std::string passwordSrc;
-        std::cout << "-------------------------------------" << std::endl;
-        std::cout << "What Password would you like to get? ";
+        std::cout << "\n\033[1;34m-------------------------------------\033[0m" << std::endl;
+        std::cout << "\033[1;36mWhat Password would you like to get? \033[0m";
         std::cin >> passwordSrc;
-        std::cout << "-------------------------------------" << std::endl;
+        std::cout << "\033[1;34m-------------------------------------\033[0m" << std::endl;
         Account* newAccount = manager.getPassword(passwordSrc);
-        std::cout << "Account username: " << newAccount->getUsername() << std::endl;
-        std::cout << "Account password: " << newAccount->getPassword() << std::endl;
-        std::cout << "Account email: " << newAccount->getEmail() << std::endl;
+        std::cout << "\n\033[1;36mAccount username: \033[0m" << newAccount->getUsername() << std::endl;
+        std::cout << "\033[1;36mAccount password: \033[0m" << newAccount->getPassword() << std::endl;
+        std::cout << "\033[1;36mAccount email: \033[0m" << newAccount->getEmail() << std::endl;
+        std::cout << "" << std::endl;
     }
 
     else if (appCommand == "Delete")
     {
         std::string passwordSrc;
-        std::cout << "-------------------------------------" << std::endl;
-        std::cout << "What Password would you like to delete? ";
+        std::cout << "\n\033[1;31m-------------------------------------\033[0m" << std::endl;
+        std::cout << "\033[1;31mWhat Password would you like to delete? \033[0m";
         std::cin >> passwordSrc;
-        std::cout << "-------------------------------------" << std::endl;
+        std::cout << "\033[1;31m-------------------------------------\033[0m\n" << std::endl;
         manager.deletePassword(passwordSrc);
     }
 
@@ -112,12 +114,13 @@ int main (int argc, char* argv[])
     {
         std::string passwordSrc;
         std::string newPassword;
-        std::cout << "-------------------------------------" << std::endl;
-        std::cout << "What Password would you like to update? ";
+        std::cout << "\n\033[1;33m---------------------------------------\033[0m" << std::endl;
+        std::cout << "\033[1;33mWhat Password would you like to update? \033[0m";
         std::cin >> passwordSrc;
-        std::cout << "What is the new password" << std::endl;
+        std::cout << "\033[1;33m---------------------------------------\033[0m\n" << std::endl;
+        std::cout << "\033[1;33mWhat is the new password? \033[0m";
         std::cin >> newPassword;
-        std::cout << "-------------------------------------" << std::endl;
+        std::cout << "" << std::endl;
         manager.updatePassword(passwordSrc,newPassword);
     }
 
