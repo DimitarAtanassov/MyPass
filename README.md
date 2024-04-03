@@ -36,8 +36,3 @@ Follow the on-screen prompts to perform various actions:
 
 - MyPass encrypts password data using AES encryption with a user-provided password.
 - Passwords are stored locally on the user's machine, ensuring data privacy.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
