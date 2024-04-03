@@ -193,6 +193,7 @@ void PasswordManager::updatePassword(const std::string& passwordSrc, const std::
         else if (line == passwordSrc)
         {
             inAccountSection = true;
+            found = true;
             outputFile << line << std::endl;
             currentSrc = line;
         }
@@ -205,4 +206,12 @@ void PasswordManager::updatePassword(const std::string& passwordSrc, const std::
     outputFile.close();
     std::remove("/home/dimitar/Documents/C++ Mypass/passwords.txt");
     std::rename("/home/dimitar/Documents/C++ Mypass/temp.txt", "/home/dimitar/Documents/C++ Mypass/passwords.txt");
+    if (found)
+    {
+        std::cout << "\033[1;32mPassword with source '" << passwordSrc << "' has been updated.\033[0m" << std::endl;
+    }
+    else
+    {
+        std::cout << "\033[1;31mPassword with source '" << passwordSrc << "' not found.\033[0m" << std::endl;
+    }
 }

@@ -114,12 +114,13 @@ int main (int argc, char* argv[])
     {
         std::string passwordSrc;
         std::string newPassword;
-        std::cout << "-------------------------------------" << std::endl;
-        std::cout << "What Password would you like to update? ";
+        std::cout << "\n\033[1;33m---------------------------------------\033[0m" << std::endl;
+        std::cout << "\033[1;33mWhat Password would you like to update? \033[0m";
         std::cin >> passwordSrc;
-        std::cout << "What is the new password" << std::endl;
+        std::cout << "\033[1;33m---------------------------------------\033[0m\n" << std::endl;
+        std::cout << "\033[1;33mWhat is the new password? \033[0m";
         std::cin >> newPassword;
-        std::cout << "-------------------------------------" << std::endl;
+        std::cout << "" << std::endl;
         manager.updatePassword(passwordSrc,newPassword);
     }
 
