@@ -90,7 +90,13 @@ Account* PasswordManager::getPassword(const std::string& src)
     }
     
     myFile.close();
-    
+    if(!accFound)
+    {
+        accountUsername = "";
+        accountPassword = "";
+        accountEmail = "";
+        foundAccount = new Account(accountSrc, accountUsername, accountPassword, accountEmail);
+    }
     return foundAccount; // Return the found account, nullptr if not found
 }
 

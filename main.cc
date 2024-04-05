@@ -5,7 +5,10 @@
 #include "Account.hh"
 #include "Security.hh"
 #include <fstream>
-#include <cryptopp/cryptlib.h> 
+#include <cryptopp/cryptlib.h>
+
+std::string menu();
+
 int main (int argc, char* argv[])
 {
     Security security;
@@ -27,58 +30,11 @@ int main (int argc, char* argv[])
         security.DecryptPasswordFile(inputFilename, decryptedFilename, key);
     }
 
-    bool validChoice = false;
-    int userChoice;
     std::string appCommand;
     std::cout << "\033[;34m============================\033[0m" << std::endl;
     std::cout << "\033[;34m         MyPass\033[0m" << std::endl;
     std::cout << "\033[;34m============================\033[0m\n" << std::endl;
-
-    while(!validChoice)
-    {   
-        std::cout << "\033[1;34mWhat would you like to do?\033[0m" << std::endl;
-        std::cout << "\033[;36m 1.) Get Password \033[0m" << std::endl;
-        std::cout <<"\033[;32m 2.) Add Password \033[0m" << std::endl;
-        std::cout <<"\033[;33m 3.) Update Password \033[0m" << std::endl;
-        std::cout <<"\033[;31m 4.) Delete Password \033[0m" << std::endl;
-        std::cout << "" << std::endl;
-        std::cout <<"Enter the corresponding number: ";
-        std::cin >> userChoice;
-
-        // Invalid User Input
-        if(std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
-            std::cout << "Invalid input. Please enter a number 1-4" << std::endl;
-        }
-
-        else
-        {
-            switch(userChoice)
-            {
-                case 1:
-                    appCommand = "Get";
-                    validChoice = true;
-                    break;
-                
-                case 2:
-                    appCommand = "Add";
-                    validChoice = true;
-                    break;
-
-                case 3:
-                    appCommand = "Update";
-                    validChoice = true;
-                    break;
-                
-                case 4:
-                    appCommand = "Delete";
-                    validChoice = true;
-                    break;
-            }
-        }
-    }
+    appCommand = menu();
     PasswordManager manager;
     if(appCommand == "Add")
     {
@@ -95,10 +51,17 @@ int main (int argc, char* argv[])
         std::cin >> passwordSrc;
         std::cout << "\033[1;34m-------------------------------------\033[0m" << std::endl;
         Account* newAccount = manager.getPassword(passwordSrc);
-        std::cout << "\n\033[1;36mAccount username: \033[0m" << newAccount->getUsername() << std::endl;
-        std::cout << "\033[1;36mAccount password: \033[0m" << newAccount->getPassword() << std::endl;
-        std::cout << "\033[1;36mAccount email: \033[0m" << newAccount->getEmail() << std::endl;
-        std::cout << "" << std::endl;
+        if(newAccount->getUsername() == "")
+        {
+            std::cout << "\033[1;31m Password for: " << passwordSrc << " not found\033[0m" << std::endl;
+        }
+        else
+        {
+            std::cout << "\n\033[1;36mAccount username: \033[0m" << newAccount->getUsername() << std::endl;
+            std::cout << "\033[1;36mAccount password: \033[0m" << newAccount->getPassword() << std::endl;
+            std::cout << "\033[1;36mAccount email: \033[0m" << newAccount->getEmail() << std::endl;
+            std::cout << "" << std::endl;
+        }
     }
 
     else if (appCommand == "Delete")
@@ -129,4 +92,58 @@ int main (int argc, char* argv[])
     std::remove(decryptedFilename.c_str());
     return 0;
 
+}
+
+std::string menu()
+{
+    bool validChoice = false;
+    int userChoice;
+    std::string appCommand;
+
+    while(!validChoice)
+    {
+        std::cout << "\033[1;34mWhat would you like to do?\033[0m" << std::endl;
+        std::cout << "\033[;36m 1.) Get Password \033[0m" << std::endl;
+        std::cout <<"\033[;32m 2.) Add Password \033[0m" << std::endl;
+        std::cout <<"\033[;33m 3.) Update Password \033[0m" << std::endl;
+        std::cout <<"\033[;31m 4.) Delete Password \033[0m" << std::endl;
+        std::cout << "" << std::endl;
+        std::cout <<"Enter the corresponding number: ";
+        std::cin >> userChoice;
+
+        if(std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+            std::cout << "\033[;31m Invalid input. Please enter a number 1-4\033[0m" << std::endl;
+        }
+
+        else
+        {
+            switch(userChoice)
+            {
+                case 1:
+                    appCommand = "Get";
+                    validChoice = true;
+                    break;
+                
+                case 2:
+                    appCommand = "Add";
+                    validChoice = true;
+                    break;
+
+                case 3:
+                    appCommand = "Update";
+                    validChoice = true;
+                    break;
+                
+                case 4:
+                    appCommand = "Delete";
+                    validChoice = true;
+                    break;
+            }
+        }
+    }
+
+    return appCommand;
 }
