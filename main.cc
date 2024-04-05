@@ -9,17 +9,18 @@
 int main (int argc, char* argv[])
 {
     Security security;
-    std::string inputFilename = "encrypted_passwords.txt";
-    std::string decryptedFilename = "passwords.txt";
-    std::string password = "userpassword";
-    unsigned int keySize = 16; // Example key size for AES-128
+    std::string inputFilename = "encrypted_passwords.txt"; // OPTIONAL: Update to your preference
+    std::string decryptedFilename = "passwords.txt"; // OPTIONAL: Update to your preference
+    std::string password = "userpassword";  //Change this to what ever you want your file to be encrypted with
+    unsigned int keySize = 16; // key size for AES-128
     CryptoPP::SecByteBlock key = security.DeriveKeyFromPassword(password, nullptr, 0, keySize);
 
     // Check if the file exists and if it is encrypted
     std::ifstream inputFile(inputFilename, std::ios::binary);
     if (!inputFile) {
-        std::cerr << "Encrypted password file does not exist or is empty. Skipping decryption." << std::endl;
-        // You may choose to create an empty file or handle this scenario differently
+        std::cerr << "\033[;35mEncrypted password file does not exist or is empty. Skipping decryption.\033[0m" << std::endl;
+        // If file does not exist it will be created when you first add a new password
+        // File is also encrypted when the program is closed
     }
     else
     {
