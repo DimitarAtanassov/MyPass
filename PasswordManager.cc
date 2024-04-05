@@ -57,7 +57,7 @@ Account* PasswordManager::getPassword(const std::string& src)
     std::string accountPassword;
     std::string accountEmail;
     bool inAccountSection = false;
-    
+    bool accFound = false;
     myFile.open("/home/dimitar/Documents/C++ Mypass/passwords.txt");
     
     if (myFile.is_open())
@@ -69,6 +69,7 @@ Account* PasswordManager::getPassword(const std::string& src)
                 if (line.empty()) // End of account section
                 {
                     foundAccount = new Account(accountSrc, accountUsername, accountPassword, accountEmail);
+                    accFound = true;
                     break;
                 }
                 
