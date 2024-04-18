@@ -39,10 +39,10 @@ void PasswordManager::writeToFile(const std::string& src, const std::string& use
     std::ofstream myFile;
     myFile.open("/home/dimitar/Documents/C++ Mypass/passwords.txt", std::ios::app);
     myFile << "" << std::endl;
-    myFile << src << std::endl;
-    myFile << username << std::endl;
-    myFile << password << std::endl;
-    myFile << email << std::endl;
+    myFile << "src: " << src << std::endl;
+    myFile << "username: " << username << std::endl;
+    myFile << "password: " << password << std::endl;
+    myFile << "email: " << email << std::endl;
     myFile << "" << std::endl;
     myFile.close();
 }
@@ -139,6 +139,7 @@ void PasswordManager::deletePassword(const std::string& srcToDelete)
         {
             inAccountSection = true; // Entering the account section
             currentSrc = line;
+            found = true; // Marking the account as found
         }
         else
         {
