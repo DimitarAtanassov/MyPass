@@ -36,3 +36,19 @@ Follow the on-screen prompts to perform various actions:
 
 - MyPass encrypts password data using AES encryption with a user-provided password.
 - Passwords are stored locally on the user's machine, ensuring data privacy.
+
+## Screenshots
+
+![Menu](https://github.com/DimitarAtanassov/MyPass/blob/master/mypassmenu.png)
+
+![Add Password](https://github.com/DimitarAtanassov/MyPass/blob/master/mypassadd.png)
+
+![Get Password](https://github.com/DimitarAtanassov/MyPass/blob/master/mypassget.png)
+
+![Update Password](https://github.com/DimitarAtanassov/MyPass/blob/master/mypassupdate.png)
+
+![Delete Password](https://github.com/DimitarAtanassov/MyPass/blob/master/mypasssdelete.png)
+
+## Contributing
+
+Contributions to this project are welcome! If you encounter any bugs or have suggestions for improvement, feel free to open an issue or submit a pull request.
